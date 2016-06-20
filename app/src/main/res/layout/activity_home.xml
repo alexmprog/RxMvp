@@ -1,10 +1,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/very_light_grey"
-    tools:context=".ui.activities.HomeActivity">
+    tools:context=".presentation.ui.repository.RepositoryActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -36,7 +37,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/ic_search_white_36dp"
             android:visibility="gone"
-            tools:visibility="visible"/>
+            tools:visibility="visible" />
 
         <EditText
             android:id="@+id/edit_text_username"
@@ -47,7 +48,7 @@
             android:imeOptions="actionSearch"
             android:inputType="text"
             android:textColor="@color/white"
-            android:theme="@style/LightEditText"/>
+            android:theme="@style/LightEditText" />
 
     </RelativeLayout>
 
@@ -59,20 +60,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:visibility="gone" />
-
-    <TextView
-        android:id="@+id/text_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/layout_search"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="@dimen/vertical_margin"
-        android:layout_marginRight="@dimen/vertical_margin"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:text="@string/default_info_message"
-        android:textColor="@color/secondary_text"
-        android:textSize="18sp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/repos_recycler_view"

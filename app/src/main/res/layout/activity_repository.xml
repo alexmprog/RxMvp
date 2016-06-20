@@ -95,11 +95,11 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/image_owner"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
                 android:layout_centerVertical="true"
-                android:orientation="vertical">
+                android:layout_toRightOf="@id/image_owner"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
 
                 <TextView
                     android:id="@+id/text_owner_name"
@@ -133,5 +133,13 @@
         </RelativeLayout>
 
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:visibility="gone" />
 
 </RelativeLayout>
