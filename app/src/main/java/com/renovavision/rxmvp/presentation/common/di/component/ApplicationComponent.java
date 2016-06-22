@@ -10,7 +10,7 @@ import com.renovavision.rxmvp.data.repository.GitHubRepository;
 import com.renovavision.rxmvp.domain.UseCaseExecutor;
 import com.renovavision.rxmvp.domain.di.UseCaseModule;
 import com.renovavision.rxmvp.domain.usecase.github.GetRepositoriesUseCase;
-import com.renovavision.rxmvp.domain.usecase.github.GetUserUserCase;
+import com.renovavision.rxmvp.domain.usecase.github.GetUserUseCase;
 import com.renovavision.rxmvp.presentation.common.di.module.ApplicationModule;
 
 import javax.inject.Named;
@@ -34,7 +34,7 @@ public interface ApplicationComponent {
 
     GetRepositoriesUseCase provideGetRepositoriesUseCase();
 
-    GetUserUserCase provideGetUserUserCase();
+    GetUserUseCase provideGetUserUserCase();
 
     @Named(UseCaseExecutor.SUBSCRIBE_SCHEDULER)
     Scheduler provideSubscribeScheduler();

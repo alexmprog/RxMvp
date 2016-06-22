@@ -120,7 +120,7 @@ public class RepositoryActivity extends BaseMvpActivity<RepositoryListView, Repo
     @Override
     public RepositoryListComponent createActivityComponent() {
         return DaggerRepositoryListComponent.builder()
-                .applicationComponent(GitHubApp.get(this).getComponent())
+                .applicationComponent(GitHubApp.getComponent())
                 .activityModule(new ActivityModule(this))
                 .repositoryListModule(new RepositoryListModule())
                 .build();

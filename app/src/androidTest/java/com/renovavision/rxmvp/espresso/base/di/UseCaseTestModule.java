@@ -1,4 +1,4 @@
-package com.renovavision.rxmvp.domain.di;
+package com.renovavision.rxmvp.espresso.base.di;
 
 import com.renovavision.rxmvp.data.repository.GitHubRepository;
 import com.renovavision.rxmvp.domain.UseCaseExecutor;
@@ -15,7 +15,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 @Module
-public class UseCaseModule {
+public class UseCaseTestModule {
 
     @Provides
     @Singleton

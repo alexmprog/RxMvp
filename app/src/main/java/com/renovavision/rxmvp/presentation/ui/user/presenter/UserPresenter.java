@@ -7,7 +7,7 @@ import android.text.TextUtils;
 import com.renovavision.rxmvp.R;
 import com.renovavision.rxmvp.data.model.Repository;
 import com.renovavision.rxmvp.domain.UseCaseExecutor;
-import com.renovavision.rxmvp.domain.usecase.github.GetUserUserCase;
+import com.renovavision.rxmvp.domain.usecase.github.GetUserUseCase;
 import com.renovavision.rxmvp.presentation.common.presenter.BasePresenter;
 import com.renovavision.rxmvp.presentation.ui.user.view.UserView;
 import com.renovavision.rxmvp.presentation.ui.user.view.UserViewError;
@@ -21,7 +21,7 @@ public class UserPresenter extends BasePresenter<UserView> {
 
     private UseCaseExecutor mUseCaseExecutor;
 
-    private GetUserUserCase mGetUserUseCase;
+    private GetUserUseCase mGetUserUseCase;
 
     private UserModelTransformer mUserModelTransformer;
 
@@ -29,7 +29,7 @@ public class UserPresenter extends BasePresenter<UserView> {
 
     private UserViewModel mUserViewModel;
 
-    public UserPresenter(@NonNull GetUserUserCase getUserUseCase,
+    public UserPresenter(@NonNull GetUserUseCase getUserUseCase,
                          @NonNull UseCaseExecutor useCaseExecutor,
                          @NonNull UserModelTransformer userModelTransformer) {
         this.mGetUserUseCase = getUserUseCase;

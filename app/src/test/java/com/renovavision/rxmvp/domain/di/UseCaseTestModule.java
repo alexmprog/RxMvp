@@ -11,24 +11,25 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import rx.Scheduler;
-import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+import static org.mockito.Mockito.mock;
+
 @Module
-public class UseCaseModule {
+public class UseCaseTestModule {
 
     @Provides
     @Singleton
     @Named(UseCaseExecutor.SUBSCRIBE_SCHEDULER)
     public Scheduler providesSubscribeScheduler() {
-        return Schedulers.io();
+        return Schedulers.immediate();
     }
 
     @Provides
     @Singleton
     @Named(UseCaseExecutor.OBSERVE_SCHEDULER)
     public Scheduler providesObserveScheduler() {
-        return AndroidSchedulers.mainThread();
+        return Schedulers.immediate();
     }
 
     @Provides
@@ -40,11 +41,11 @@ public class UseCaseModule {
 
     @Provides
     public GetUserUseCase providesGetUseCase(GitHubRepository gitHubRepository) {
-        return new GetUserUseCase(gitHubRepository);
+        return mock(GetUserUseCase.class);
     }
 
     @Provides
     public GetRepositoriesUseCase providesGetRepositoriesUseCase(GitHubRepository gitHubRepository) {
-        return new GetRepositoriesUseCase(gitHubRepository);
+        return mock(GetRepositoriesUseCase.class);
     }
 }

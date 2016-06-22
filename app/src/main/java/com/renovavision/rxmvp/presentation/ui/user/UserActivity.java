@@ -99,7 +99,7 @@ public class UserActivity extends BaseMvpActivity<UserView, UserPresenter, UserC
     @Override
     public UserComponent createActivityComponent() {
         return DaggerUserComponent.builder()
-                .applicationComponent(GitHubApp.get(this).getComponent())
+                .applicationComponent(GitHubApp.getComponent())
                 .activityModule(new ActivityModule(this))
                 .userModule(new UserModule())
                 .build();

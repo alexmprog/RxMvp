@@ -1,7 +1,6 @@
 package com.renovavision.rxmvp.presentation;
 
 import android.app.Application;
-import android.content.Context;
 
 import com.renovavision.rxmvp.BuildConfig;
 import com.renovavision.rxmvp.data.di.GitHubModule;
@@ -15,7 +14,7 @@ import timber.log.Timber;
 
 public class GitHubApp extends Application {
 
-    ApplicationComponent applicationComponent;
+    static ApplicationComponent applicationComponent;
 
     @Override
     public void onCreate() {
@@ -25,7 +24,11 @@ public class GitHubApp extends Application {
             Timber.plant(new Timber.DebugTree());
         }
 
-        applicationComponent = DaggerApplicationComponent.builder()
+        applicationComponent = provideAppComponent();
+    }
+
+    protected ApplicationComponent provideAppComponent() {
+        return DaggerApplicationComponent.builder()
                 .repositoryModule(new RepositoryModule())
                 .gitHubModule(new GitHubModule())
                 .useCaseModule(new UseCaseModule())
@@ -33,11 +36,7 @@ public class GitHubApp extends Application {
                 .build();
     }
 
-    public static GitHubApp get(Context context) {
-        return (GitHubApp) context.getApplicationContext();
-    }
-
-    public ApplicationComponent getComponent() {
+    public static ApplicationComponent getComponent() {
         return applicationComponent;
     }
 }

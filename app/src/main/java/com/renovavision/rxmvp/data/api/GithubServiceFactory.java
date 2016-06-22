@@ -1,5 +1,7 @@
 package com.renovavision.rxmvp.data.api;
 
+import android.support.annotation.NonNull;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.renovavision.rxmvp.BuildConfig;
@@ -12,17 +14,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GitHubServiceFactory {
 
-    public static GitHubService createGithubService() {
+    public static GitHubService createGithubService(@NonNull String baseUrl) {
         OkHttpClient okHttpClient = createOkHttpClient(createLoggingInterceptor());
-        return createGiphyService(okHttpClient);
+        return createGiphyService(okHttpClient, baseUrl);
     }
 
-    public static GitHubService createGiphyService(OkHttpClient okHttpClient) {
+    public static GitHubService createGiphyService(@NonNull OkHttpClient okHttpClient, @NonNull String baseUrl) {
         final Gson gson = new GsonBuilder()
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BuildConfig.GITHUB_BASE_URL)
+                .baseUrl(baseUrl)
                 .client(okHttpClient)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))

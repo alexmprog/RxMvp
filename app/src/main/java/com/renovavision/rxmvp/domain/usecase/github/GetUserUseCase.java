@@ -7,11 +7,11 @@ import com.renovavision.rxmvp.data.repository.GitHubRepository;
 
 import rx.Observable;
 
-public class GetUserUserCase {
+public class GetUserUseCase {
 
     private GitHubRepository gitHubRepository;
 
-    public GetUserUserCase(GitHubRepository gitHubRepository) {
+    public GetUserUseCase(GitHubRepository gitHubRepository) {
         this.gitHubRepository = gitHubRepository;
     }
 

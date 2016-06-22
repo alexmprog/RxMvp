@@ -13,6 +13,9 @@ android {
         versionCode 1
         versionName "1.0"
 
+        testInstrumentationRunner "com.renovavision.rxmvp.espresso.base.MockTestRunner"
+        //testInstrumentationRunnerArgument "size", "small"
+
         buildConfigField "String", "GITHUB_BASE_URL", "\"https://api.github.com/\""
     }
 
@@ -26,6 +29,10 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
     }
 
     dependencies {
@@ -50,9 +57,70 @@ android {
         apt dependencies.daggerCompiler
         provided dependencies.javaxAnnotation
 
+        testApt dependencies.daggerCompiler
         testCompile dependencies.jUnit
         testCompile dependencies.mockito
         testCompile dependencies.robolectric
+        testCompile dependencies.mockWebser
+
+        androidTestApt dependencies.daggerCompiler
+        androidTestCompile dependencies.espressoCore
+        androidTestCompile(dependencies.espressoCotrib) {
+            // Necessary to avoid version conflicts
+            exclude group: 'com.android.support', module: 'appcompat'
+            exclude group: 'com.android.support', module: 'support-v4'
+            exclude group: 'com.android.support', module: 'support-annotations'
+            exclude module: 'recyclerview-v7'
+        }
+        androidTestCompile dependencies.testRunner
+        androidTestCompile dependencies.testRules
+        androidTestCompile dependencies.supportAnnotation
+        androidTestCompile dependencies.mockito
+        androidTestCompile dependencies.mockWebser
+        androidTestCompile dependencies.dexMaker
+        androidTestCompile dependencies.dexMockito
+    }
+
+}
+
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion = "0.7.1.201405082137"
+}
+
+def coverageSourceDirs = [
+        '../app/src/main/java'
+]
+
+task jacocoTestReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
+    group = "Reporting"
+
+    description = "Generate Jacoco coverage reports"
+
+    classDirectories = fileTree(
+            dir: '../app/build/intermediates/classes/debug',
+            excludes: ['**/R.class',
+                       '**/R$*.class',
+                       '**/*$ViewInjector*.*',
+                       '**/*$ViewBinder*.*',   //DI
+                       '**/*_MembersInjector*.*',  //DI
+                       '**/*_Factory*.*',  //DI
+                       '**/BuildConfig.*',
+                       '**/Manifest*.*',
+                       '**/Lambda$*.class',
+                       '**/Lambda.class',
+                       '**/*Lambda.class',
+                       '**/*Lambda*.class']
+    )
+
+    additionalSourceDirs = files(coverageSourceDirs)
+    sourceDirectories = files(coverageSourceDirs)
+    executionData = files('../app/build/jacoco/testDebugUnitTest.exec')
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
     }
 
 }
